@@ -39,10 +39,16 @@ int	ft_atoi(const char *str)
 	return (res * minus);
 }
 
-char *ft_itoa_m(int nb)
+void ft_putnbr_multi(int nb)
 {
-	while (nb != 0)
-		ft_itoa_m (nb % 10)
+    char c;
+    
+    if (nb > 0)
+    {
+        ft_putnbr_multi(nb / 10);
+        c = (nb % 10) + 48;
+        write(1, &c, 1);
+    }
 }
 
 int main (int a_c, char **a_v)
