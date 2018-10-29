@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_int_tab.c                                     :+:      :+:    :+:   */
+/*   struct1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedoryc <ofedoryc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 20:28:46 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/10/29 20:28:50 by ofedoryc         ###   ########.fr       */
+/*   Created: 2018/10/29 19:18:46 by ofedoryc          #+#    #+#             */
+/*   Updated: 2018/10/29 20:30:56 by ofedoryc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	sort_int_tab(int *tab, unsigned int size)
-{
-	unsigned int	i;
-	int				temp;
+#include "list.h"
+#include <unistd.h>
 
-	i = 0;
-	while (i < (size - 1))
+t_list		*sort_list(t_list *list, int (*cmp)(int, int))
+{
+	int		tmp_data;
+	t_list	*tmp;
+
+	tmp = list;
+	while (list->next != NULL)
 	{
-		if (tab[i] > tab[i + 1])
+		if (((*cmp)(list->data, list->next->data)) == 0)
 		{
-			temp = tab[i];
-			tab[i] = tab[i + 1];
-			tab[i + 1] = temp;
-			i = 0;
+			tmp_data = list->data;
+			list->data = list->next->data;
+			list->next->data = tmp_data;
+			list = tmp;
 		}
 		else
-			i++;
+			list = list->next;
 	}
+	list = tmp;
+	return (list);
 }
