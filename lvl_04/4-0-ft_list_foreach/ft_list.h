@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct1.c                                          :+:      :+:    :+:   */
+/*   ft_list.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedoryc <ofedoryc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 19:18:46 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/10/29 20:30:56 by ofedoryc         ###   ########.fr       */
+/*   Created: 2018/10/30 09:16:49 by ofedoryc          #+#    #+#             */
+/*   Updated: 2018/10/30 09:19:51 by ofedoryc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
-#include <unistd.h>
+#ifndef FT_LIST_H
+# define FT_LIST_H
 
-t_list		*sort_list(t_list *list, int (*cmp)(int, int))
+typedef struct		s_list
 {
-	int		tmp_data;
-	t_list	*tmp;
+	struct s_list	*next;
+	void			*data;
+}					t_list;
 
-	tmp = list;
-	while (list->next != NULL)
-	{
-		if (((*cmp)(list->data, list->next->data)) == 0)
-		{
-			tmp_data = list->data;
-			list->data = list->next->data;
-			list->next->data = tmp_data;
-			list = tmp;
-		}
-		else
-			list = list->next;
-	}
-	list = tmp;
-	return (list);
-}
+#endif

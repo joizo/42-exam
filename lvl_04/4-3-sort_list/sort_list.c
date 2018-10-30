@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.h                                             :+:      :+:    :+:   */
+/*   sort_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedoryc <ofedoryc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/27 13:14:10 by zaz               #+#    #+#             */
-/*   Updated: 2018/10/30 12:57:25 by ofedoryc         ###   ########.fr       */
+/*   Created: 2018/10/30 12:57:49 by ofedoryc          #+#    #+#             */
+/*   Updated: 2018/10/30 13:01:23 by ofedoryc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIST_H
-# define LIST_H
+#include "list.h"
+#include <unistd.h>
 
-typedef struct s_list t_list;
-
-struct s_list
+t_list		*sort_list(t_list *list, int (*cmp)(int, int))
 {
-	int     data;
-	t_list  *next;
-};
+	int		tmp_data;
+	t_list	*tmp;
 
-#endif
+	tmp = list;
+	while (list->next != NULL)
+	{
+		if (((*cmp)(list->data, list->next->data)) == 0)
+		{
+			tmp_data = list->data;
+			list->data = list->next->data;
+			list->next->data = tmp_data;
+			list = tmp;
+		}
+		else
+			list = list->next;
+	}
+	list = tmp;
+	return (list);
+}
