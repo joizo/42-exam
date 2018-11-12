@@ -59,7 +59,6 @@ int main (void)
 	tmp->next->next->data = 6;
 	tmp->next->next->next->data = 53;
 
-
     print_list(tmp);
     sort_list(tmp, ascending);
 	print_list(tmp);
