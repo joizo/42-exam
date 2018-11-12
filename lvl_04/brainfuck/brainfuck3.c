@@ -6,7 +6,7 @@
 /*   By: ofedoryc <ofedoryc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 21:37:30 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/11/09 00:00:19 by ofedoryc         ###   ########.fr       */
+/*   Updated: 2018/11/09 00:04:24 by ofedoryc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	brainfuck(char *str)
 
 	i = 0;
 	ptr = (char *)malloc(sizeof(char) * 2048);
-	while (*str && i++ < 4096)
+	while (*str && i++ <= 4096)
 	{
 		if (*str == '>')
 			ptr++;
